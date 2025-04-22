@@ -94,4 +94,7 @@
     width: 220px;
     height: 220px;
   }
+  .selecting-quiz-container p {
+    display: none;
+  }
 }
