@@ -88,11 +88,11 @@
 @media (max-width: 767px) {
   .cards-container {
     flex-direction: column;
-    gap: 28px;
+    gap: 16px;
   }
   .quiz-card {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
   .selecting-quiz-container p {
     display: none;
