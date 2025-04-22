@@ -1,0 +1,36 @@
+.results-container {
+  width: 100%;
+
+  /* 60px from navbar and 100px from footer */
+  height: calc(100dvh - 60px - 100px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.results-container h4 {
+  font-size: 28px;
+}
+
+.results-container h5 {
+  font-size: 16px;
+  color: var(--accent-text-color);
+}
+
+.results-container p {
+  max-width: 800px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .results-container {
+    padding: 20px;
+  }
+}

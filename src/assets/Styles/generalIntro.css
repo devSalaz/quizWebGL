@@ -1,0 +1,33 @@
+.general-intro {
+  width: 100%;
+
+  /* 60px from navbar and 100px from footer */
+  height: calc(100dvh - 60px - 100px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.general-intro p {
+  max-width: 800px;
+  font-size: 20px;
+}
+
+.general-intro span {
+  color: var(--accent-text-color);
+}
+
+@media (max-width: 767px) {
+  .general-intro p {
+    padding: 0 24px;
+    max-width: 100%;
+    font-size: 20px;
+    text-align: center;
+  }
+}

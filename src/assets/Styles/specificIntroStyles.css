@@ -1,0 +1,82 @@
+.specific-intro-container {
+  width: 100%;
+
+  /* 60px from navbar and 100px from footer */
+  height: calc(100dvh - 60px - 100px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 20px;
+
+  position: relative;
+  z-index: 2;
+}
+
+.brainrot-intro {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.brainrot-intro h3 {
+  font-size: 60px;
+  text-transform: uppercase;
+
+  color: var(--accent-text-color);
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.brainrot-intro p {
+  max-width: 800px;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.nickelodeon-intro {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 40px;
+  padding: 60px;
+}
+
+.nickelodeon-intro h3 {
+  font-size: 32px;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 800px;
+
+  color: var(--accent-text-color);
+  color: #f57d0d;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+
+  font-weight: bold;
+}
+
+.nickelodeon-intro p {
+  max-width: 800px;
+  text-align: center;
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+  .nickelodeon-intro {
+    padding: 40px 20px;
+  }
+
+  .brainrot-intro {
+    padding: 40px 20px;
+  }
+}

@@ -1,0 +1,116 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --main-background: #f9f9f9;
+  --secondary-background: #f2f2f2;
+
+  --main-text-color: #1d1d1f;
+  --secondary-text-color: #6e6e73;
+  --accent-text-color: #0071e3;
+
+  --main-button-background-color: #0071e3;
+  --main-button-hover-color: #0062c0;
+  --main-button-text-color: #ffffff;
+
+  --max-width: 1080px;
+  --main-border-radius: 16px;
+}
+
+body.dark-mode {
+  --main-background: #1d1d1f;
+  --secondary-background: #2e2e30;
+
+  --main-text-color: #f9f9f9;
+  --secondary-text-color: #a2a2a5;
+  --accent-text-color: #0a84ff;
+
+  --main-button-background-color: #0071e3;
+  --main-button-text-color: #ffffff;
+}
+
+body,
+#root {
+  min-height: 100dvh;
+  background-color: var(--main-background);
+  color: var(--main-text-color);
+  font-family: "Inter", sans-serif;
+
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+button {
+  background-color: var(--main-button-background-color);
+  color: var(--main-button-text-color);
+
+  border: none;
+  border-radius: var(--main-border-radius);
+
+  padding: 8px 16px;
+
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 18px;
+
+  transition: background-color 200ms ease, color 200ms ease;
+
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+  background-color: var(--main-button-hover-color);
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+img,
+video,
+svg {
+  height: auto;
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}
