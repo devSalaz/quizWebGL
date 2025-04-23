@@ -113,6 +113,7 @@ const RenComponent = () => {
 };
 
 export default RenComponent;
+useGLTF.preload("/assets/models/Ren.glb");
 
 const vertexShader = `
 uniform float uTime;

@@ -11,7 +11,6 @@ import "../../assets/Styles/experienceStyles.css";
 
 const Experience = () => {
   const currentStage = useQuizStore((state) => state.currentStage);
-  const currentQuiz = useQuizStore((state) => state.currentQuiz);
 
   const isActive =
     currentStage === QUIZ_STAGES.QUIZ ||

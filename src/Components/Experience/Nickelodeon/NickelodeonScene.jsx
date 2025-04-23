@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment } from "@react-three/drei";
 import * as THREE from "three";
 import useQuizStore, { QUIZ_STAGES } from "../../../store/quizStore";
 
@@ -28,7 +28,7 @@ const NickelodeonScene = () => {
       currentComponent = null;
       break;
     default:
-      currentComponent = null;
+      currentComponent = <RenComponent />;
   }
 
   return (
@@ -40,7 +40,6 @@ const NickelodeonScene = () => {
         environmentIntensity={1.15}
         backgroundBlurriness={1}
       />
-      <OrbitControls />
 
       <ClippingPlane planeRef={plane} />
     </>

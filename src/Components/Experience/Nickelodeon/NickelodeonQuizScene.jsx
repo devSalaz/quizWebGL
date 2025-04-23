@@ -10,6 +10,8 @@ import Calamardo from "./Calamardo";
 import Donatello from "./Donatello";
 import Nigel from "./Nigel";
 import Rocko from "./Rocko";
+import Jimmy from "./Jimmy";
+import Aang from "./Aang";
 
 const NickelodeonQuizScene = ({ planeRef }) => {
   const currentQuestionId = useQuizStore((state) => state.currentQuestionId);
@@ -70,7 +72,7 @@ const NickelodeonQuizScene = ({ planeRef }) => {
     sparklesRef.current.position.y = -planeRef.current.constant - 0.3;
   });
 
-  const components = [Phantom, Calamardo, Donatello, Nigel, Rocko];
+  const components = [Phantom, Calamardo, Donatello, Nigel, Rocko, Jimmy, Aang];
 
   const randomIndex = useMemo(() => {
     return Math.floor(Math.random() * components.length);
@@ -109,6 +111,8 @@ const NickelodeonQuizScene = ({ planeRef }) => {
       <Donatello planeRef={planeRef} visible={randomIndex === 2} />
       <Nigel planeRef={planeRef} visible={randomIndex === 3} />
       <Rocko planeRef={planeRef} visible={randomIndex === 4} />
+      <Jimmy planeRef={planeRef} visible={randomIndex === 5} />
+      <Aang planeRef={planeRef} visible={randomIndex === 6} />
     </>
   );
 };
