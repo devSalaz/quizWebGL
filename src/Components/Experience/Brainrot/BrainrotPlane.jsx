@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
-import { useTexture, Image } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 const indexPosZMultiplier = 0.05;
@@ -19,6 +19,9 @@ const BrainrotPlane = ({ index }) => {
 
   const texture = useTexture(`/assets/textures/brainrot-${index}.jpg`);
   texture.encoding = THREE.sRGBEncoding;
+
+  const targetPosition = useRef(new THREE.Vector3());
+  const interpolatedPosition = useRef(new THREE.Vector3());
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -39,21 +42,26 @@ const BrainrotPlane = ({ index }) => {
     }
 
     let currentPosition = planeRef.current.position;
-    let newPosition = new THREE.Vector3(
+
+    targetPosition.current.set(
       mouseData.x * (width / 2),
       mouseData.y * (height / 2),
       posZ
     );
 
-    let lerpPosition = new THREE.Vector3().lerpVectors(
+    interpolatedPosition.current.lerpVectors(
       currentPosition,
-      newPosition,
+      targetPosition.current,
       lerpDelay
     );
 
-    planeRef.current.position.set(lerpPosition.x, lerpPosition.y, posZ);
+    planeRef.current.position.set(
+      interpolatedPosition.current.x,
+      interpolatedPosition.current.y,
+      posZ
+    );
 
-    const direction = currentPosition.x < newPosition.x ? 1 : -1;
+    const direction = currentPosition.x < targetPosition.current.x ? 1 : -1;
 
     materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
     materialRef.current.uniforms.uDirection.value = direction;
@@ -84,7 +92,6 @@ const BrainrotPlane = ({ index }) => {
             uDirection: { value: 1 },
             uTexture: { value: texture },
             uMoving: { value: 0 },
-            uOpacity: { value: 1 },
           }}
           vertexShader={`
             uniform float uTime;
@@ -106,17 +113,15 @@ const BrainrotPlane = ({ index }) => {
           `}
           fragmentShader={`
             uniform sampler2D uTexture;
-            uniform float uOpacity;
             varying vec2 vUv;
 
             void main() {
               gl_FragColor = texture2D(uTexture, vUv);
-              gl_FragColor.a = uOpacity;
             }
           `}
           transparent={true}
         />
-        <planeGeometry args={[2, 2, 32, 32]} />
+        <planeGeometry args={[2, 2, 16, 16]} />
       </mesh>
     </>
   );

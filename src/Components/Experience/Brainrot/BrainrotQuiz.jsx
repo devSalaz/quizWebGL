@@ -1,9 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useTexture } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import useQuizStore from "../../../store/quizStore";
-import gsap from "gsap";
 
 const BrainrotQuiz = () => {
   const currentQuestions = useQuizStore((state) => state.currentQuestions);
@@ -24,7 +23,6 @@ export default BrainrotQuiz;
 const QuizPlane = ({ id }) => {
   const planeRef = useRef();
   const shaderMaterialRef = useRef();
-  const isHovered = useRef(false);
 
   const texture = useTexture(`/assets/textures/brainrot-${id}.jpg`);
   texture.encoding = THREE.sRGBEncoding;
@@ -35,7 +33,6 @@ const QuizPlane = ({ id }) => {
 
   useEffect(() => {
     const onMouseMove = (event) => {
-      // Convert screen space to NDC
       mouse.current.x = (event.clientX / size.width) * 2 - 1;
       mouse.current.y = -(event.clientY / size.height) * 2 + 1;
     };
@@ -101,8 +98,8 @@ const QuizPlane = ({ id }) => {
             float intensity = uHoverState + 0.85; 
 
             newPosition.z += intensity * 0.1 * sin(dist * 10.0 + uTime * 2.0);
-            newPosition.x += intensity * (uv.x - 0.5) * 0.1; // Subtle horizontal movement
-            newPosition.y += intensity * (uv.y - 0.5) * 0.1; // Subtle vertical movement
+            newPosition.x += intensity * (uv.x - 0.5) * 0.1;
+            newPosition.y += intensity * (uv.y - 0.5) * 0.1; 
 
             vUv = uv;
             vNoise = intensity * sin(dist * 10.0 - uTime);
