@@ -10,8 +10,6 @@ import NickelodeonQuizScene from "./NickelodeonQuizScene";
 import ClippingPlane from "./ClippingPlane";
 
 const NickelodeonScene = () => {
-  const clipPlaneRef = useRef();
-
   const plane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0));
 
   const currentStage = useQuizStore((state) => state.currentStage);
@@ -36,10 +34,14 @@ const NickelodeonScene = () => {
       {currentComponent}
 
       <Environment
-        preset="city"
-        environmentIntensity={1.15}
+        preset="sunset"
+        environmentIntensity={0.75}
         backgroundBlurriness={1}
       />
+
+      <directionalLight intensity={4} color={0x5cad4a} />
+
+      <ambientLight color={0xf57d0d} intensity={0.5} />
 
       <ClippingPlane planeRef={plane} />
     </>

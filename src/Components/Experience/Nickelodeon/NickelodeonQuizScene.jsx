@@ -3,6 +3,7 @@ import { Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import useQuizStore from "../../../store/quizStore";
+import CustomShaderMaterial from "three-custom-shader-material";
 
 //Components
 import Phantom from "./Phantom";
@@ -105,16 +106,17 @@ const NickelodeonQuizScene = ({ planeRef }) => {
       </group>
 
       <mesh ref={circleMesh} geometry={geometry} rotation={[Math.PI / 2, 0, 0]}>
-        <shaderMaterial
+        <CustomShaderMaterial
           ref={shaderMaterialRef}
-          fragmentShader={fragmentShader}
-          vertexShader={vertexShader}
+          baseMaterial={THREE.MeshBasicMaterial}
           side={THREE.DoubleSide}
           uniforms={{
             uTime: { value: 0 },
             uColorStart: { value: new THREE.Color("#F57D0D") },
             uColorEnd: { value: new THREE.Color("#5CAD4A") },
           }}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
         />
       </mesh>
       {currentQuestion !== null && currentQuestion !== undefined && (
@@ -287,7 +289,7 @@ const fragmentShader = `
         // Final color
         vec3 color = mix(uColorStart, uColorEnd, strength);
 
-        gl_FragColor = vec4(color, 1.0);
+        csm_DiffuseColor = vec4(color, 1.0);
 
         #include <colorspace_fragment>
     }

@@ -44,16 +44,45 @@ const Dagglet = ({ planeRef, visible }) => {
               name="Object_2"
               geometry={nodes.Object_2.geometry}
               skeleton={nodes.Object_2.skeleton}
+              renderOrder={0}
             >
               <meshStandardMaterial
                 map={materials.Dagget_Costume_01_Mat.map}
                 clippingPlanes={planeRef.current ? [planeRef.current] : []}
                 clipIntersection={true}
+                stencilWrite={true}
+                stencilFunc={THREE.AlwaysStencilFunc} // Changed to AlwaysStencilFunc
+                stencilRef={1}
+                stencilZPass={THREE.ReplaceStencilOp}
+              />
+            </skinnedMesh>
+
+            <primitive object={nodes.mixamorigHips} />
+          </group>
+
+          <group
+            name="Armature"
+            position={[0, -1, 0]}
+            rotation={[Math.PI / 2, 0, 0]}
+            scale={1.5}
+          >
+            <skinnedMesh
+              name="Object_2"
+              geometry={nodes.Object_2.geometry}
+              skeleton={nodes.Object_2.skeleton}
+              renderOrder={2}
+            >
+              <meshPhysicalMaterial
+                transparent
+                opacity={0.5}
+                wireframe
+                clippingPlanes={[]} // No direct clipping
                 stencilWrite={false}
-                stencilFunc={THREE.EqualStencilFunc}
+                stencilFunc={THREE.NotEqualStencilFunc} // <---- REVERSED TEST
                 stencilRef={1}
               />
             </skinnedMesh>
+
             <primitive object={nodes.mixamorigHips} />
           </group>
         </group>
