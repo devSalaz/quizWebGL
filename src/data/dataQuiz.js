@@ -155,6 +155,7 @@ export const nickelodeonQuiz = {
   questions: [
     {
       Question: "Who is the boy genius with a lab in his house?",
+      NickelodeonId: 1,
       Options: [
         { Label: "Arnold Shortman", isCorrect: false },
         { Label: "Patrick Star", isCorrect: false },
@@ -166,6 +167,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "What is the name of SpongeBob’s pet snail?",
+      NickelodeonId: 2,
       Options: [
         { Label: "Larry", isCorrect: false },
         { Label: "Gary", isCorrect: true },
@@ -177,6 +179,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "What is Danny Fenton's ghostly superhero name?",
+      NickelodeonId: 3,
       Options: [
         { Label: "Danny Phantom", isCorrect: true },
         { Label: "Phantom Boy", isCorrect: false },
@@ -188,6 +191,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "What is Timmy Turner’s signature accessory?",
+      NickelodeonId: 4,
       Options: [
         { Label: "Blue shirt", isCorrect: false },
         { Label: "Yellow gloves", isCorrect: false },
@@ -199,6 +203,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "What is the shape of Arnold's head?",
+      NickelodeonId: 5,
       Options: [
         { Label: "Circle", isCorrect: false },
         { Label: "Square", isCorrect: false },
@@ -210,6 +215,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "In Rugrats, what is the name of Tommy's best friend?",
+      NickelodeonId: 6,
       Options: [
         { Label: "Chuckie", isCorrect: true },
         { Label: "Phil", isCorrect: false },
@@ -221,6 +227,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "Where do CatDog live?",
+      NickelodeonId: 7,
       Options: [
         { Label: "A trash can", isCorrect: false },
         { Label: "A house shaped like a bone", isCorrect: true },
@@ -232,6 +239,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "Who is the leader of the Teenage Mutant Ninja Turtles?",
+      NickelodeonId: 8,
       Options: [
         { Label: "Leonardo ", isCorrect: true },
         { Label: "Donatello", isCorrect: false },
@@ -243,6 +251,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "What are the names of the two main beaver brothers?",
+      NickelodeonId: 9,
       Options: [
         { Label: "Dagger and Norman", isCorrect: false },
         { Label: "Beaver and Brody", isCorrect: false },
@@ -254,6 +263,7 @@ export const nickelodeonQuiz = {
     },
     {
       Question: "Who is the last Airbender?",
+      NickelodeonId: 10,
       Options: [
         { Label: "Katara", isCorrect: false },
         { Label: "Sokka", isCorrect: false },

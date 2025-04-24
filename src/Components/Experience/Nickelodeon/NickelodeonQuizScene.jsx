@@ -12,12 +12,29 @@ import Nigel from "./Nigel";
 import Rocko from "./Rocko";
 import Jimmy from "./Jimmy";
 import Aang from "./Aang";
+import Gerald from "./Gerald";
+import Dagglet from "./Dagglet";
+import MrKrabs from "./MrKrabs";
 
 const NickelodeonQuizScene = ({ planeRef }) => {
   const currentQuestionId = useQuizStore((state) => state.currentQuestionId);
+  const currentQuestions = useQuizStore((state) => state.currentQuestions);
+
+  const [currentQuestion, setCurrentCuestion] = useState(
+    currentQuestions[currentQuestionId].NickelodeonId
+  );
+
+  useEffect(() => {
+    const currentQuestion = currentQuestions[currentQuestionId];
+
+    if (currentQuestion) {
+      setCurrentCuestion(currentQuestion);
+    }
+  }, [currentQuestionId, currentQuestions]);
+
   const sparklesRef = useRef();
 
-  const radius = 1,
+  const radius = 1.5,
     segments = 32;
   const circleMesh = useRef();
   const geometry = useMemo(
@@ -64,19 +81,13 @@ const NickelodeonQuizScene = ({ planeRef }) => {
     );
     state.camera.lookAt(0, 0, 0);
 
-    shaderMaterialRef.current.uniforms.uTime.value += delta * 5;
+    shaderMaterialRef.current.uniforms.uTime.value += delta * 7.5;
     shaderMaterialRef.current.needsUpdate = true;
 
     circleMesh.current.position.y = planeRef.current.constant;
 
     sparklesRef.current.position.y = -planeRef.current.constant - 0.3;
   });
-
-  const components = [Phantom, Calamardo, Donatello, Nigel, Rocko, Jimmy, Aang];
-
-  const randomIndex = useMemo(() => {
-    return Math.floor(Math.random() * components.length);
-  }, [currentQuestionId]);
 
   return (
     <>
@@ -88,7 +99,7 @@ const NickelodeonQuizScene = ({ planeRef }) => {
           opacity={0.35}
           scale={0.25}
           noise={20}
-          color={new THREE.Color("#00FF7F")}
+          color={new THREE.Color("#5CAD4A")}
           clippingPlanes={planeRef.current ? [planeRef.current] : []}
         />
       </group>
@@ -101,18 +112,55 @@ const NickelodeonQuizScene = ({ planeRef }) => {
           side={THREE.DoubleSide}
           uniforms={{
             uTime: { value: 0 },
-            uColorStart: { value: new THREE.Color("#00FF7F") },
-            uColorEnd: { value: new THREE.Color("#008080") },
+            uColorStart: { value: new THREE.Color("#F57D0D") },
+            uColorEnd: { value: new THREE.Color("#5CAD4A") },
           }}
         />
       </mesh>
-      <Phantom planeRef={planeRef} visible={randomIndex === 0} />
-      <Calamardo planeRef={planeRef} visible={randomIndex === 1} />
-      <Donatello planeRef={planeRef} visible={randomIndex === 2} />
-      <Nigel planeRef={planeRef} visible={randomIndex === 3} />
-      <Rocko planeRef={planeRef} visible={randomIndex === 4} />
-      <Jimmy planeRef={planeRef} visible={randomIndex === 5} />
-      <Aang planeRef={planeRef} visible={randomIndex === 6} />
+      {currentQuestion !== null && currentQuestion !== undefined && (
+        <>
+          <Jimmy
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 1}
+          />
+          <MrKrabs
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 2}
+          />
+          <Phantom
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 3}
+          />
+          <Calamardo
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 4}
+          />
+          <Gerald
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 5}
+          />
+          <Nigel
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 6}
+          />
+          <Rocko
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 7}
+          />
+          <Donatello
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 8}
+          />
+          <Dagglet
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 9}
+          />
+          <Aang
+            planeRef={planeRef}
+            visible={currentQuestion?.NickelodeonId === 10}
+          />
+        </>
+      )}
     </>
   );
 };

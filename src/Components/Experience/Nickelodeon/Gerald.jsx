@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import * as THREE from "three";
 
-const Aang = ({ planeRef, visible }) => {
+const Gerald = ({ planeRef, visible }) => {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/assets/models/Aang.glb");
+  const { nodes, materials, animations } = useGLTF("/assets/models/Gerald.glb");
 
   const { actions, mixer } = useAnimations(animations, group);
   const animationAction = useRef(null);
@@ -28,15 +28,15 @@ const Aang = ({ planeRef, visible }) => {
       <group ref={group} dispose={null} visible={visible}>
         <group name="Scene">
           <group
-            name="Aangobjcleanermaterialmergergles"
+            name="Geraldobjcleanermaterialmergergles"
             rotation={[0, 0, 0]}
             scale={1}
           />
           <group
             name="Armature"
-            position={[0, -1.5, 0]}
+            position={[0, -1.25, 0]}
             rotation={[Math.PI / 2, 0, 0]}
-            scale={1.85}
+            scale={1.25}
           >
             <skinnedMesh
               name="Object_2"
@@ -44,7 +44,7 @@ const Aang = ({ planeRef, visible }) => {
               skeleton={nodes.Object_2.skeleton}
             >
               <meshStandardMaterial
-                map={materials.Aang_Body_02_Mat.map}
+                color={"#000000"}
                 clippingPlanes={planeRef.current ? [planeRef.current] : []}
                 clipIntersection={true}
                 stencilWrite={false}
@@ -58,21 +58,7 @@ const Aang = ({ planeRef, visible }) => {
               skeleton={nodes.Object_3.skeleton}
             >
               <meshStandardMaterial
-                map={materials.Aang_Costume_01B_Mat.map}
-                clippingPlanes={planeRef.current ? [planeRef.current] : []}
-                clipIntersection={true}
-                stencilWrite={false}
-                stencilFunc={THREE.EqualStencilFunc}
-                stencilRef={1}
-              />
-            </skinnedMesh>
-            <skinnedMesh
-              name="Object_4"
-              geometry={nodes.Object_4.geometry}
-              skeleton={nodes.Object_4.skeleton}
-            >
-              <meshStandardMaterial
-                map={materials.Aang_Expressions_Mat.map}
+                map={materials.Gerald_Mat.map}
                 clippingPlanes={planeRef.current ? [planeRef.current] : []}
                 clipIntersection={true}
                 stencilWrite={false}
@@ -88,6 +74,5 @@ const Aang = ({ planeRef, visible }) => {
   );
 };
 
-export default Aang;
-
-useGLTF.preload("/assets/models/Aang.glb");
+export default Gerald;
+useGLTF.preload("/assets/models/Gerald.glb");
