@@ -40,8 +40,16 @@ body.dark-mode {
   --main-button-text-color: #ffffff;
 }
 
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
 body,
 #root {
+  width: 100%;
   min-height: 100dvh;
   background-color: var(--main-background);
   color: var(--main-text-color);
