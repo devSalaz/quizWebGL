@@ -59,32 +59,6 @@ const Dagglet = ({ planeRef, visible }) => {
 
             <primitive object={nodes.mixamorigHips} />
           </group>
-
-          <group
-            name="Armature"
-            position={[0, -1, 0]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={1.5}
-          >
-            <skinnedMesh
-              name="Object_2"
-              geometry={nodes.Object_2.geometry}
-              skeleton={nodes.Object_2.skeleton}
-              renderOrder={2}
-            >
-              <meshPhysicalMaterial
-                transparent
-                opacity={0.5}
-                wireframe
-                clippingPlanes={[]} // No direct clipping
-                stencilWrite={false}
-                stencilFunc={THREE.NotEqualStencilFunc} // <---- REVERSED TEST
-                stencilRef={1}
-              />
-            </skinnedMesh>
-
-            <primitive object={nodes.mixamorigHips} />
-          </group>
         </group>
       </group>
     </>
