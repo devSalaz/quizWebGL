@@ -80,7 +80,7 @@
 
 @media (max-width: 767px) {
   .quiz-container {
-    padding: 20px;
+    padding: 8px;
   }
 
   .timer {
@@ -98,10 +98,11 @@
   }
 
   .options {
-    padding: 0 20px;
+    padding: 0 16px;
+    gap: 8px;
   }
 
   .options button {
-    width: 100%;
+    width: fit-content;
   }
 }
