@@ -53,10 +53,20 @@ const NickelodeonQuizScene = ({ planeRef }) => {
       mouseData.y = -(e.clientY / window.innerHeight) * 2 + 1;
     };
 
+    const handleTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        mouseData.x = (touch.clientX / window.innerWidth) * 2 - 1;
+        mouseData.y = -(touch.clientY / window.innerHeight) * 2 + 1;
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, []);
 
