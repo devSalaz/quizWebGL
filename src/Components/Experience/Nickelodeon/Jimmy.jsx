@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
-const Jimmy = ({ planeRef, visible }) => {
+const Jimmy = ({ planeRef, planeSecondary, visible }) => {
   const group = useRef();
   const { nodes, animations } = useGLTF("/assets/models/Jimmy.glb");
 
@@ -37,24 +37,56 @@ const Jimmy = ({ planeRef, visible }) => {
             rotation={[Math.PI / 2, 0, 0]}
             scale={0.02}
           >
+            <skinnedMesh
+              name="Object_3"
+              geometry={nodes.Object_3.geometry}
+              skeleton={nodes.Object_3.skeleton}
+              rotation={[Math.PI / 2, 0, 0]}
+              scale={0.01}
+            >
+              <meshStandardMaterial
+                map={texture}
+                clippingPlanes={planeRef.current ? [planeRef.current] : []}
+                clipIntersection={true}
+                stencilWrite={false}
+                stencilFunc={THREE.EqualStencilFunc}
+                stencilRef={1}
+              />
+            </skinnedMesh>
             <primitive object={nodes.mixamorigHips} />
           </group>
-          <skinnedMesh
-            name="Object_3"
-            geometry={nodes.Object_3.geometry}
-            skeleton={nodes.Object_3.skeleton}
+
+          {/* Bones */}
+
+          <group
+            name="Armature"
+            position={[0, -1.5, 0]}
             rotation={[Math.PI / 2, 0, 0]}
-            scale={0.01}
+            scale={0.02}
           >
-            <meshStandardMaterial
-              map={texture}
-              clippingPlanes={planeRef.current ? [planeRef.current] : []}
-              clipIntersection={true}
-              stencilWrite={false}
-              stencilFunc={THREE.EqualStencilFunc}
-              stencilRef={1}
-            />
-          </skinnedMesh>
+            <skinnedMesh
+              name="Object_3"
+              geometry={nodes.Object_3.geometry}
+              skeleton={nodes.Object_3.skeleton}
+              rotation={[Math.PI / 2, 0, 0]}
+              scale={0.01}
+            >
+              <meshStandardMaterial
+                roughness={0.25}
+                color={0xe3dac9}
+                wireframe={true}
+                wireframeLinewidth={0.5}
+                clippingPlanes={
+                  planeSecondary.current ? [planeSecondary.current] : []
+                }
+                clipIntersection={true}
+                stencilWrite={false}
+                stencilFunc={THREE.EqualStencilFunc}
+                stencilRef={1}
+              />
+            </skinnedMesh>
+            <primitive object={nodes.mixamorigHips} />
+          </group>
         </group>
       </group>
     </>

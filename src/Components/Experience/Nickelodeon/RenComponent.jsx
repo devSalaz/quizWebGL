@@ -76,7 +76,7 @@ const RenComponent = () => {
           geometry={nodes.Body.geometry}
           material={materials.Ren_Mat}
           rotation={[-Math.PI / 2, 0, 0]}
-        />
+        ></mesh>
         <group ref={groupLeftEye} position={[0.146, 0.796, 0.232]}>
           <mesh
             castShadow

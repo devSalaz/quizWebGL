@@ -17,7 +17,7 @@ import Gerald from "./Gerald";
 import Dagglet from "./Dagglet";
 import MrKrabs from "./MrKrabs";
 
-const NickelodeonQuizScene = ({ planeRef }) => {
+const NickelodeonQuizScene = ({ planeRef, planeSecondary }) => {
   const currentQuestionId = useQuizStore((state) => state.currentQuestionId);
   const currentQuestions = useQuizStore((state) => state.currentQuestions);
 
@@ -97,7 +97,7 @@ const NickelodeonQuizScene = ({ planeRef }) => {
 
     circleMesh.current.position.y = planeRef.current.constant;
 
-    sparklesRef.current.position.y = -planeRef.current.constant - 0.3;
+    //sparklesRef.current.position.y = -planeRef.current.constant - 0.3;
   });
 
   return (
@@ -105,15 +105,17 @@ const NickelodeonQuizScene = ({ planeRef }) => {
       <group rotation={[Math.PI / 2, Math.PI / 2, Math.PI / 2]}>
         <Sparkles
           ref={sparklesRef}
-          count={40}
+          count={60}
           size={5}
-          opacity={0.35}
-          scale={0.25}
+          opacity={0.5}
+          scale={10}
           noise={20}
           color={new THREE.Color("#5CAD4A")}
           clippingPlanes={planeRef.current ? [planeRef.current] : []}
         />
       </group>
+
+      <plane />
 
       <mesh ref={circleMesh} geometry={geometry} rotation={[Math.PI / 2, 0, 0]}>
         <CustomShaderMaterial
@@ -133,42 +135,52 @@ const NickelodeonQuizScene = ({ planeRef }) => {
         <>
           <Jimmy
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 1}
           />
           <MrKrabs
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 2}
           />
           <Phantom
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 3}
           />
           <Calamardo
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 4}
           />
           <Gerald
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 5}
           />
           <Nigel
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 6}
           />
           <Rocko
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 7}
           />
           <Donatello
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 8}
           />
           <Dagglet
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 9}
           />
           <Aang
             planeRef={planeRef}
+            planeSecondary={planeSecondary}
             visible={currentQuestion?.NickelodeonId === 10}
           />
         </>

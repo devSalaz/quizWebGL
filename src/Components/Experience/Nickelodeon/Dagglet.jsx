@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import * as THREE from "three";
 
-const Dagglet = ({ planeRef, visible }) => {
+const Dagglet = ({ planeRef, planeSecondary, visible }) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/assets/models/Dagglet.glb"
@@ -54,6 +54,38 @@ const Dagglet = ({ planeRef, visible }) => {
                 stencilFunc={THREE.AlwaysStencilFunc} // Changed to AlwaysStencilFunc
                 stencilRef={1}
                 stencilZPass={THREE.ReplaceStencilOp}
+              />
+            </skinnedMesh>
+
+            <primitive object={nodes.mixamorigHips} />
+          </group>
+
+          {/* Bones */}
+
+          <group
+            name="Armature"
+            position={[0, -1, 0]}
+            rotation={[Math.PI / 2, 0, 0]}
+            scale={1.75}
+          >
+            <skinnedMesh
+              name="Object_2"
+              geometry={nodes.Object_2.geometry}
+              skeleton={nodes.Object_2.skeleton}
+              renderOrder={0}
+            >
+              <meshStandardMaterial
+                roughness={0.25}
+                color={0xe3dac9}
+                wireframe={true}
+                wireframeLinewidth={0.5}
+                clippingPlanes={
+                  planeSecondary.current ? [planeSecondary.current] : []
+                }
+                clipIntersection={true}
+                stencilWrite={false}
+                stencilFunc={THREE.EqualStencilFunc}
+                stencilRef={1}
               />
             </skinnedMesh>
 

@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import useQuizStore, { QUIZ_STAGES } from "../../../store/quizStore";
 
-const ClippingPlane = ({ planeRef }) => {
+const ClippingPlane = ({ planeRef, planeSecondary }) => {
   const planeVisual = useRef();
   const animationRef = useRef(null);
 
@@ -20,6 +20,13 @@ const ClippingPlane = ({ planeRef }) => {
     }
 
     planeRef.current.setComponents(0, -1, 0, planeVisual.current.position.y);
+    planeVisual.current.rotation.y += 10;
+    planeSecondary.current.setComponents(
+      0,
+      1,
+      0,
+      -planeVisual.current.position.y
+    );
   });
 
   useEffect(() => {

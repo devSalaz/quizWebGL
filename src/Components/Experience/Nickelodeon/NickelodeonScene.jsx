@@ -10,7 +10,9 @@ import NickelodeonQuizScene from "./NickelodeonQuizScene";
 import ClippingPlane from "./ClippingPlane";
 
 const NickelodeonScene = () => {
-  const plane = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0));
+  //const planeRef = useRef(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0));
+  const planeRef = useRef();
+  const planeSecondary = useRef();
 
   const currentStage = useQuizStore((state) => state.currentStage);
   let currentComponent;
@@ -20,7 +22,12 @@ const NickelodeonScene = () => {
       currentComponent = <RenComponent />;
       break;
     case QUIZ_STAGES.QUIZ:
-      currentComponent = <NickelodeonQuizScene planeRef={plane} />;
+      currentComponent = (
+        <NickelodeonQuizScene
+          planeRef={planeRef}
+          planeSecondary={planeSecondary}
+        />
+      );
       break;
     case QUIZ_STAGES.RESULTS:
       currentComponent = null;
@@ -43,7 +50,10 @@ const NickelodeonScene = () => {
 
       <ambientLight color={0xf57d0d} intensity={0.5} />
 
-      <ClippingPlane planeRef={plane} />
+      <plane ref={planeRef} normal={[0, -1, 0]} constant={0} />
+      <plane ref={planeSecondary} normal={[0, 1, 0]} constant={0} />
+
+      <ClippingPlane planeRef={planeRef} planeSecondary={planeSecondary} />
     </>
   );
 };
